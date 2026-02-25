@@ -1,0 +1,83 @@
+task.spawn(function()
+while task.wait(0.5) do
+pcall(function()
+if not targetPlayer or not targetPlayer.Character then return end
+
+local char = player.Character  
+        if not char then return end  
+
+        local hrp = char:FindFirstChild("HumanoidRootPart")  
+        local thrp = targetPlayer.Character:FindFirstChild("HumanoidRootPart")  
+        local thum = targetPlayer.Character:FindFirstChildOfClass("Humanoid")  
+        local comm = char:FindFirstChild("Communicate")  
+
+        if not hrp or not thrp or not thum or not comm then return end  
+        if thum.Health <= 0 then return end  
+
+        if (hrp.Position - thrp.Position).Magnitude > 5 then return end  
+
+        --==============================  
+        -- LEFT CLICK  
+        --==============================  
+        comm:FireServer({ Goal = "LeftClick", Mobile = true })  
+
+        --==============================  
+        -- Flash Strike  
+        --==============================  
+        local Flash = player.Backpack:FindFirstChild("Flash Strike")  
+        if Flash then  
+            comm:FireServer({ Goal = "Console Move", Tool = Flash })  
+        end  
+
+        task.wait(1)  
+
+        --==============================  
+        -- Whirlwind Kick  
+        --==============================  
+        local Whirlwind = player.Backpack:FindFirstChild("Whirlwind Kick")  
+        if Whirlwind then  
+            comm:FireServer({ Goal = "Console Move", Tool = Whirlwind })  
+        end  
+
+        task.wait(1)  
+
+        --==============================  
+        -- Scatter  
+        --==============================  
+        local Scatter = player.Backpack:FindFirstChild("Scatter")  
+        if Scatter then  
+            comm:FireServer({ Goal = "Console Move", Tool = Scatter })  
+        end  
+
+        task.wait(1)  
+
+        --==============================  
+        -- Explosive Shuriken  
+        --==============================  
+        local Explosive = player.Backpack:FindFirstChild("Explosive Shuriken")  
+        if Explosive then  
+            comm:FireServer({ Goal = "Console Move", Tool = Explosive })  
+        end  
+
+        task.wait(0.4)  
+
+        tapKey(Enum.KeyCode.G, 0.5)  
+
+        task.wait(0.15)   
+
+        local rand = math.random(1,4)  
+
+        if rand == 1 then  
+            tapKey(Enum.KeyCode.One)  
+        elseif rand == 2 then  
+            tapKey(Enum.KeyCode.Two)  
+        elseif rand == 3 then  
+            tapKey(Enum.KeyCode.Three)  
+        elseif rand == 4 then  
+            tapKey(Enum.KeyCode.Four)  
+        end  
+
+    end)  
+end
+
+end)
